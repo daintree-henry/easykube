@@ -1,0 +1,105 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: dev-pod-1
+  namespace: dev
+spec:
+  containers:
+  - name: nginx
+    image: nginx:alpine-slim
+
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: dev-pod-2
+  namespace: dev
+spec:
+  containers:
+  - name: nginx
+    image: nginx:alpine-slim
+
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: qa-pod-1
+  namespace: qa
+spec:
+  containers:
+  - name: nginx
+    image: nginx:alpine-slim
+
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: qa-pod-2
+  namespace: qa
+spec:
+  containers:
+  - name: nginx
+    image: nginx:alpine-slim
+
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: demo-pod-1
+  namespace: demo
+spec:
+  containers:
+  - name: nginx
+    image: nginx:alpine-slim
+
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: prod-pod-1
+  namespace: prod
+spec:
+  containers:
+  - name: nginx
+    image: nginx:alpine-slim
+
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: prod-pod-2
+  namespace: prod
+spec:
+  containers:
+  - name: nginx
+    image: nginx:alpine-slim
+
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: prod-pod-3
+  namespace: prod
+spec:
+  containers:
+  - name: nginx
+    image: nginx:alpine-slim
+
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: prod-pod-4
+  namespace: prod
+spec:
+  containers:
+  - name: nginx
+    image: nginx:alpine-slim
