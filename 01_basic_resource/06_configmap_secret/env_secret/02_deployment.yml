@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hitchecker
+  namespace: dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hitchecker
+  template:
+    metadata:
+      labels:
+        app: hitchecker
+    spec:
+      containers:
+        - name: hitchecker
+          image: devwikirepo/hitchecker:1.0.1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5000
+          envFrom:
+          - configMapRef: 
+              name: hitchecker-config 
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis
+  namespace: dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+        - name: redis
+          image: redis:7.4.2
+          ports:
+            - containerPort: 6379
+          command: ["redis-server", "--requirepass", "password"]
