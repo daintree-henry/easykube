@@ -1,0 +1,43 @@
+# 1. 정상 종료 Job
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: job-success
+spec:
+  template:
+    spec:
+      containers:
+        - name: success
+          image: busybox
+          command: ["sh", "-c", "echo 작업 완료"]
+      restartPolicy: Never
+---
+# 2. 실행 중 Job (1~1000 출력)
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: job-running
+spec:
+  template:
+    spec:
+      containers:
+        - name: running
+          image: busybox
+          command:
+            ["sh", "-c", "for i in $(seq 1 1000); do echo $i; sleep 1; done"]
+      restartPolicy: Never
+---
+# 3. 실패 - exit 1
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: job-fail-exit1
+spec:
+  backoffLimit: 1
+  template:
+    spec:
+      containers:
+        - name: fail1
+          image: busybox
+          command: ["sh", "-c", "echo 실패합니다 && exit 1"]
+      restartPolicy: Never
