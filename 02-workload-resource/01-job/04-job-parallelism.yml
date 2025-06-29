@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: job-parallelism
+spec:
+  completions: 7
+  parallelism: 2
+  template:
+    spec:
+      containers:
+      - name: parallelism
+        image: busybox
+        command: ["sh", "-c", "echo '1회 실행'; sleep 5"]
+      restartPolicy: Never
+

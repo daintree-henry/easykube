@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: job-backoff
+spec:
+  backoffLimit: 2 
+  template:
+    spec:
+      containers:
+      - name: failer
+        image: busybox
+        command: ["sh", "-c", "echo '실패'; sleep 5; exit 1"]
+      restartPolicy: Never
+
+
