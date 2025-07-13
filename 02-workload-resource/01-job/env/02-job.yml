@@ -8,7 +8,7 @@ spec:
     spec:
       containers:
         - name: success
-          image: busybox
+          image: busybox:1.35
           command: ["sh", "-c", "echo 작업 완료"]
       restartPolicy: Never
 ---
@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: running
-          image: busybox
+          image: busybox:1.35
           command:
             ["sh", "-c", "for i in $(seq 1 1000); do echo $i; sleep 1; done"]
       restartPolicy: Never
@@ -38,6 +38,6 @@ spec:
     spec:
       containers:
         - name: fail1
-          image: busybox
+          image: busybox:1.35
           command: ["sh", "-c", "echo 실패합니다 && exit 1"]
       restartPolicy: Never

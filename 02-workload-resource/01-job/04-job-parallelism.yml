@@ -9,7 +9,7 @@ spec:
     spec:
       containers:
       - name: parallelism
-        image: busybox
+        image: busybox:1.35
         command: ["sh", "-c", "echo '1회 실행'; sleep 5"]
       restartPolicy: Never
 

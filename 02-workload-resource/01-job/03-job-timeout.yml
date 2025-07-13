@@ -9,6 +9,6 @@ spec:
     spec:
       containers:
       - name: timeout
-        image: busybox
-        command: ["sh", "-c", "echo '20초 후 완료'; sleep 20"]
+        image: busybox:1.35
+        command: ["sh", "-c", "echo '30초 후 완료'; sleep 30"]
       restartPolicy: Never

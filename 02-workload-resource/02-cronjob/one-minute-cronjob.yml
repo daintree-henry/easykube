@@ -1,0 +1,21 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: one-minute-cronjob
+spec:
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: echo-container
+            image: busybox:1.35
+            args:
+            - /bin/sh
+            - -c
+            - |
+              sleep 10
+              echo "✅ CronJob executed successfully at $(date)"
+          restartPolicy: Never
+
