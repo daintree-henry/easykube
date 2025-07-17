@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: emptydir-share
+spec:
+  volumes:
+    - name: shared-volume
+      emptyDir: {}
+  containers:
+    - name: writer
+      image: busybox
+      command:
+        - sh
+        - -c
+        - 'i=0; while true; do echo "$(date +%H:%M:%S) | pod=emptydir-share | count=$i" >> /data/shared.txt; i=$((i+1)); sleep 2; done'
+      volumeMounts:
+        - name: shared-volume
+          mountPath: /data
+
+    - name: reader
+      image: busybox
+      command:
+        - sh
+        - -c
+        - 'sleep 5; tail -f /read/shared.txt'
+      volumeMounts:
+        - name: shared-volume
+          mountPath: /read

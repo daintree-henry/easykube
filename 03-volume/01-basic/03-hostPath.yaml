@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hostpath-ls-checker
+spec:
+  containers:
+  - name: watcher
+    image: busybox
+    command:
+      - /bin/sh
+      - -c
+      - |
+        while true; do
+          echo "📂 Contents of /data:"
+          ls -l /data || echo "⚠️ Cannot access /data"
+          sleep 5
+        done
+    volumeMounts:
+    - name: host-volume
+      mountPath: /data
+  volumes:
+  - name: host-volume
+    hostPath:
+      path: /tmp/hostpath-test
+      type: DirectoryOrCreate
