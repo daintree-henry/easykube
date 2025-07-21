@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: multi-container
+spec:
+  containers:
+  - name: web
+    image: nginx
+    ports:
+    - containerPort: 80
+  - name: sidecar-curl
+    image: curlimages/curl
+    command: ["sh", "-c", "while true; do echo -n '[status] '; curl -s -o /dev/null -w '%{http_code}\\n' http://localhost; sleep 3; done"]

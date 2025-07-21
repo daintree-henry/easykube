@@ -1,0 +1,85 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pending
+spec:
+  nodeSelector:
+    nonexistent-label: "true"  
+  containers:
+  - name: nginx
+    image: nginx
+
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: creating
+spec:
+  containers:
+  - name: golang
+    image: golang:1.21 
+    command: ["sleep", "3600"]
+    imagePullPolicy: Always
+
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: running
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: succeeded
+spec:
+  restartPolicy: OnFailure
+  containers:
+  - name: echo
+    image: busybox
+    command: ["sh", "-c", "echo done"]
+
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: failed
+spec:
+  restartPolicy: Never
+  containers:
+  - name: fail
+    image: busybox
+    command: ["sh", "-c", "exit 1"]
+
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: image-error
+spec:
+  containers:
+  - name: error
+    image: nonexist:v1 
+    imagePullPolicy: Always
+
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: crashloop
+spec:
+  containers:
+  - name: crash
+    image: busybox
+    command: ["sh", "-c", "sleep 1 && exit 1"]
+  restartPolicy: Always

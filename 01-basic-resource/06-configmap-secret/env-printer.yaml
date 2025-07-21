@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox-env-printer
+spec:
+  containers:
+    - name: busybox
+      image: busybox
+      command: ["sh", "-c", "echo POD_ENV=$POD_ENV && sleep 3600"]
+      env:
+        - name: POD_ENV
+          value: "env_test"

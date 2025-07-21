@@ -1,0 +1,15 @@
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-to-worker2
+spec:
+  nodeName: easykube-worker2
+  containers:
+  - name: busybox
+    image: busybox
+    command: ["sleep", "3600"]
+  tolerations:
+  - key: custom
+    operator: Exists
+    effect: NoSchedule

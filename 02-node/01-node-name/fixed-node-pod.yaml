@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: fixed-node-pod
+spec:
+  nodeName: easykube-worker
+  containers:
+    - name: app
+      image: busybox:1.35
+      command: ["sleep", "3600"]
