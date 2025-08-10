@@ -5,6 +5,6 @@ metadata:
 spec:
   serviceAccountName: my-sa
   containers:
-    - name: curl
-      image: curlimages/curl:8.15.0
-      command: ["sleep", "14400"]
+  - name: curl
+    image: curlimages/curl:8.15.0
+    command: ["sleep", "3600"]

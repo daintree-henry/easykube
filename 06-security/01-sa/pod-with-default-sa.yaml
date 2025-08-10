@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: default-sa-pod
+spec:
+  containers:
+  - name: curl
+    image: curlimages/curl:8.15.0
+    command: ["sleep", "3600"]
