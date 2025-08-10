@@ -1,10 +1,11 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: sa-pod
+  name: curl-pod-reader
+  namespace: dev
 spec:
-  serviceAccountName: my-sa
+  serviceAccountName: sa-pod-reader
   containers:
-    - name: curl
+    - name: curl-pod
       image: curlimages/curl:8.15.0
       command: ["sleep", "14400"]

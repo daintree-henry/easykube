@@ -4,23 +4,23 @@ metadata:
   name: monitor-runner
 spec:
   containers:
-  - name: runner
-    image: busybox
-    command:
-    - /bin/sh
-    - -c
-    - |
-      while true; do
-        echo "[runner] --- 실행 시작 ---"
-        /bin/sh /script/monitor.sh
-        sleep 5
-      done
-    volumeMounts:
-    - name: script-vol
-      mountPath: /script
+    - name: runner
+      image: busybox:1.35
+      command:
+        - /bin/sh
+        - -c
+        - |
+          while true; do
+            echo "[runner] --- 실행 시작 ---"
+            /bin/sh /script/monitor.sh
+            sleep 5
+          done
+      volumeMounts:
+        - name: script-vol
+          mountPath: /script
   volumes:
-  - name: script-vol
-    configMap:
-      name: monitor-script
-      defaultMode: 0777
+    - name: script-vol
+      configMap:
+        name: monitor-script
+        defaultMode: 0777
   restartPolicy: Always

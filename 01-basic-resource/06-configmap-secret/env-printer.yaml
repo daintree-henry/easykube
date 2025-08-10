@@ -5,8 +5,8 @@ metadata:
 spec:
   containers:
     - name: busybox
-      image: busybox
-      command: ["sh", "-c", "echo POD_ENV=$POD_ENV && sleep 3600"]
+      image: busybox:1.35
+      command: ["sh", "-c", "echo POD_ENV=$POD_ENV && sleep 14400"]
       env:
         - name: POD_ENV
           value: "env_test"

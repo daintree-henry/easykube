@@ -7,8 +7,9 @@ metadata:
 spec:
   containers:
     - name: test
-      image: busybox
-      command: [ "sleep", "3600" ]      volumeMounts:
+      image: busybox:1.35
+      command: ["sleep", "14400"]
+      volumeMounts:
         - name: shared-data
           mountPath: /data
   volumes:
