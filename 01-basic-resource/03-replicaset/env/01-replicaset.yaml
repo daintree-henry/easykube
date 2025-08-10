@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: backend-container
-        image: nginx:alpine
+        image: nginx:alpine-slim
 
 ---
 
@@ -34,4 +34,4 @@ spec:
     spec:
       containers:
       - name: frontend-container
-        image: nginx:alpine
+        image: nginx:alpine-slim

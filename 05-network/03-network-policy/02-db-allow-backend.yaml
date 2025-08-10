@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: db-allow-backend
+  namespace: db
+spec:
+  podSelector:
+    matchLabels:
+      tier: db
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          name: backend
+      podSelector:
+        matchLabels:
+          tier: api
+    ports:
+    - protocol: TCP
+      port: 5432

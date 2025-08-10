@@ -7,7 +7,7 @@ spec:
     nonexistent-label: "true"  
   containers:
   - name: nginx
-    image: nginx
+    image: nginx:alpine-slim
 
 ---
 
@@ -31,7 +31,7 @@ metadata:
 spec:
   containers:
   - name: nginx
-    image: nginx
+    image: nginx:alpine-slim
 
 ---
 

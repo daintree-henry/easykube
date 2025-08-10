@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: nginx:latest
+        image: nginx:alpine-slim
         ports:
         - containerPort: 80
 
@@ -37,7 +37,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: nginx:latest
+        image: nginx:alpine-slim
         ports:
         - containerPort: 80
 
@@ -59,6 +59,6 @@ spec:
     spec:
       containers:
       - name: db
-        image: nginx:latest
+        image: nginx:alpine-slim
         ports:
         - containerPort: 80

@@ -5,9 +5,9 @@ metadata:
 spec:
   containers:
   - name: web
-    image: nginx
+    image: nginx:alpine-slim
     ports:
     - containerPort: 80
   - name: sidecar-curl
-    image: curlimages/curl
+    image: curlimages/curl:8.15.0
     command: ["sh", "-c", "while true; do echo -n '[status] '; curl -s -o /dev/null -w '%{http_code}\\n' http://localhost; sleep 3; done"]

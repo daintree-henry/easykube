@@ -1,8 +1,9 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: hostpath-ls-checker
+  name: hostpath-cat-checker
 spec:
+  nodeName: easykube-worker
   containers:
   - name: watcher
     image: busybox
@@ -12,14 +13,14 @@ spec:
       - |
         while true; do
           echo "📂 Contents of /data:"
-          ls -l /data || echo "⚠️ Cannot access /data"
+          cat /mounted/test.txt || echo "⚠️ Cannot access /data"
           sleep 5
         done
     volumeMounts:
     - name: host-volume
-      mountPath: /data
+      mountPath: /mounted
   volumes:
   - name: host-volume
     hostPath:
-      path: /tmp/hostpath-test
+      path: /tmp/hostpath
       type: DirectoryOrCreate

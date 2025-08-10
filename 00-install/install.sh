@@ -1,8 +1,11 @@
+# 클러스터 생성 시
 kind create cluster --name easykube --config=kind-multi-node.yaml
 
-kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+# 매트릭 서버 설치
+kubectl apply -f ./01-metric/metric-server.yaml
 
-kubectl patch deployment metrics-server -n kube-system \
-  --type='json' \
-  -p='[{"op":"add","path":"/spec/template/spec/containers/0/args/-","value":"--kubelet-insecure-tls"}, {"op":"add","path":"/spec/template/spec/containers/0/args/-","value":"--kubelet-preferred-address-types=InternalIP"}]'
+# Ingress Controller 설치
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.12.1/deploy/static/provider/cloud/deploy.yaml
 
+# 클러스터 삭제 시
+kind delete cluster --name easykube

@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: monitor-script
+data:
+  monitor.sh: |
+    #!/bin/sh
+    echo "[monitor] 시간: $(date) | 호스트: $(hostname)"

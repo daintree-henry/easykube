@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sa-pod
+spec:
+  serviceAccountName: my-serviceaccount
+  containers:
+  - name: curl
+    image: curlimages/curl:8.15.0
+    command: ["sleep", "3600"]

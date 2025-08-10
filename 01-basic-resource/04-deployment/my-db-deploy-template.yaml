@@ -18,7 +18,7 @@ spec:
         app: db-deploy
     spec:
       containers:
-      - image: nginx:alpine
+      - image: nginx:alpine-slim
         name: nginx
         resources: {}
 status: {}

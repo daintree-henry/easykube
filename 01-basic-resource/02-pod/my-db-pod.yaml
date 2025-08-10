@@ -6,4 +6,4 @@ metadata:
 spec:
   containers:
   - name: db-container
-    image: nginx:alpine
+    image: nginx:alpine-slim

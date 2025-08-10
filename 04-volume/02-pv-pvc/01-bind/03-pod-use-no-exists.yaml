@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-use-no-exists
+  labels:
+    app: pod-use-no-exists
+spec:
+  containers:
+    - name: test
+      image: busybox
+      command: [ "sleep", "3600" ]      volumeMounts:
+        - name: shared-data
+          mountPath: /data
+  volumes:
+    - name: shared-data
+      persistentVolumeClaim:
+        claimName: no-exists
