@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: high-request-pod
+spec:
+  containers:
+  - name: high-request-pod
+    image: busybox:1.35
+    command: ["sleep", "14400"]
+    resources:
+      requests:
+        cpu: "4"
+        memory: "800Gi"

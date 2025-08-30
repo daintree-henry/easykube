@@ -1,0 +1,26 @@
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: security-context-pod
+spec:
+  containers:
+    - name: demo
+      image: busybox:1.36
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        allowPrivilegeEscalation: false
+        readOnlyRootFilesystem: true
+      command:
+        - sh
+        - -c
+        - |
+          pid1=$(cat /proc/1/comm)
+          uid=$(id -u);
+          if [ "$pid1" != "sh" ]; then
+            echo "DANGER | host PID namespace exposed | pid1=$pid1 | uid=$uid"
+          else
+            echo "SAFE | isolated PID namespace | pid1=$pid1 | uid=$uid"
+          fi
+          sleep 3600

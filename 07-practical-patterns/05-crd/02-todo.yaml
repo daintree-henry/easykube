@@ -1,0 +1,7 @@
+apiVersion: example.com/v1
+kind: Todo
+metadata:
+  name: update-version
+spec:
+  task: "Please update cluster version to 3.11.2"
+  done: false

@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: probe-fail-readiness
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: probe-fail-readiness
+  template:
+    metadata:
+      labels:
+        app: probe-fail-readiness
+    spec:
+      terminationGracePeriodSeconds: 5
+      containers:
+      - name: app
+        image: devwikirepo/probe-practice:1.6
+        env:
+        - name: MODE
+          value: "fail-readiness"
+        ports:
+        - containerPort: 5000
+        startupProbe:
+          httpGet:
+            path: /startupz
+            port: 5000
+          initialDelaySeconds: 40
+          failureThreshold: 10   
+          periodSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /readyz
+            port: 5000
+          periodSeconds: 10
+          failureThreshold: 3

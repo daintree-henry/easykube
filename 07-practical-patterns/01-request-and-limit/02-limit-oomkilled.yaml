@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mem-limit-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mem-limit
+  template:
+    metadata:
+      labels:
+        app: mem-limit
+    spec:
+      containers:
+      - name: stress
+        image: polinux/stress
+        command: ["stress"]
+        args: ["--vm", "1", "--vm-bytes", "48M", "--timeout", "60s"]
+        resources:
+          requests:
+            memory: "16Mi"
+          limits:
+            memory: "32Mi"

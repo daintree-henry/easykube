@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cpu-burster
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cpu-burster
+  template:
+    metadata:
+      labels:
+        app: cpu-burster
+    spec:
+      containers:
+      - name: cpu-burster
+        image: devwikirepo/cpu-burster:1.0 
+        resources:
+          requests:
+            cpu: "200m"
+          limits:
+            cpu: "200m"
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: cpu-burster-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: cpu-burster
+  minReplicas: 1
+  maxReplicas: 4
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+

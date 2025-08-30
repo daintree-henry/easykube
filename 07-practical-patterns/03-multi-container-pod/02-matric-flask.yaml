@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: matric-flask
+spec:
+  containers:
+  - name: app
+    image: devwikirepo/probe-practice:1.6
+    ports:
+    - containerPort: 5000
+  - name: curl-sidecar
+    image: curlimages/curl
+    command: ["sh", "-c"]
+    args: ["while true; do curl -s http://127.0.0.1:5000/; echo; sleep 5; done"]
