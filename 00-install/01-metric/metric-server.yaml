@@ -107,7 +107,7 @@ spec:
   - name: https
     port: 443
     protocol: TCP
-    targetPort: https
+    targetPort: 4443
   selector:
     k8s-app: metrics-server
 ---
@@ -130,11 +130,13 @@ spec:
       labels:
         k8s-app: metrics-server
     spec:
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
       containers:
       - args:
         - --cert-dir=/tmp
         - --secure-port=4443
-        - --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
+        - --kubelet-preferred-address-types=InternalIP
         - --kubelet-use-node-status-port
         - --metric-resolution=15s
         - --kubelet-insecure-tls

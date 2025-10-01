@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: fast-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: local-fast
+  resources:
+    requests:
+      storage: 30Mi

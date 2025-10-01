@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: db-allow-backend
+  name: db-from-backend
   namespace: db
 spec:
   podSelector:
