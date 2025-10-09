@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rollingupdate
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      initContainers:
+      - name: delay-start
+        image: busybox:1.35
+        command: ['sh', '-c', 'echo "Delaying startup 20s..."; sleep 20']
+      containers:
+      - name: nginx
+        image: nginx:alpine-slim
