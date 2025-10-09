@@ -1,17 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-db-deploy
+  labels:
+    app: db-deploy
+  name: db-deploy
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: db
+      app: db-deploy
   template:
     metadata:
       labels:
-        app: db
+        app: db-deploy
     spec:
       containers:
-      - name: db-container
-        image: nginx:alpine-slim
+      - image: nginx:alpine-slim
+        name: nginx
