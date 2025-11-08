@@ -1,5 +1,6 @@
 # 1. Ingress Controller 설치
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.12.1/deploy/static/provider/cloud/deploy.yaml
+cd ~/easykube/00-install
+kubectl apply -f ingress-controller.yaml
 
 # 2. Ingress Controller가 정상적으로 설치되었는지 확인
 kubectl get all -n ingress-nginx
