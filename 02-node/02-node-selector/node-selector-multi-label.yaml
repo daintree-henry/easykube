@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: node-selector-multi-label
+spec:
+  nodeSelector:
+    disktype: ssd
+    cpu: high
+  containers:
+    - name: app
+      image: busybox:1.35
+      command: ["sleep", "14400"]
